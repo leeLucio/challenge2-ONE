@@ -1,3 +1,6 @@
+var botonIniciar = document.getElementById("iniciar-juego");
+
+var botonNuevaPalabra = document.getElementById("nueva-palabra");
 
 var palabras = ["QUESO", "JAMON", "ORACLE", "JAVASCRIPT", "COMPUTADORA", "CELULAR", "TECLADO", "VENTANA", "PUERTA", "ELEFANTE"];
 
@@ -15,12 +18,27 @@ var largoPalabra;
 var palabraConGuiones;
 var nErrores;
 
-var perdio = false;
-var gano = false;
+var perdio = true;
+var gano = true;
 
-var botonIniciar = document.getElementById("iniciar-juego");
+botonNuevaPalabra.addEventListener("click", function(){
+	var input = document.getElementById("input-nueva-palabra");
+
+	var palabraNueva = input.value;
+
+	if(palabraNueva == ""){
+		return;
+	}
+
+	palabras.push(palabraNueva.toUpperCase());
+	input.value = "";
+	
+})
 
 botonIniciar.addEventListener("click", function(){
+	perdio = false;
+	gano = false;
+
 	pincel.clearRect(0,0, 1200, 800);
 
 	palabra = sortearPalabra();
@@ -33,6 +51,9 @@ botonIniciar.addEventListener("click", function(){
 });
 
 window.addEventListener("keypress", function(tecla){
+	if(gano || perdio)
+		return;
+
 	var letra = tecla.key.toUpperCase();
 	var letraCoincide = false;
 	for(var i = 0; i < largoPalabra; i++){
