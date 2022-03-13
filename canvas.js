@@ -75,6 +75,12 @@ function dibujarMensajePerdio(){
 function dibujarMensajeGano(){
 	pincel.font = "50px Arial";
 	pincel.fillStyle = "red";
-	pincel.fillText("Felicidades"<br> "Ganaste", 500, 500);
+	pincel.fillText("Felicidades", 500, 500);
+	pincel.fillText("Ganaste", 500, 550);
 }
 
+function dibujarLetras(letras){
+	pincel.font = "50px Arial";
+	pincel.fillStyle = "black";
+	pincel.fillText(letras, 500, 300);
+}

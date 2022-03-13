@@ -21,6 +21,9 @@ var nErrores;
 var perdio = true;
 var gano = true;
 
+var letrasMal = [];
+var letrasMal2 = "";
+
 botonNuevaPalabra.addEventListener("click", function(){
 	var input = document.getElementById("input-nueva-palabra");
 
@@ -35,9 +38,16 @@ botonNuevaPalabra.addEventListener("click", function(){
 	
 })
 
-botonIniciar.addEventListener("click", function(){
+function reiniciar(){
 	perdio = false;
 	gano = false;
+	letrasMal = [];
+	letrasMal2 = "";
+
+}
+
+botonIniciar.addEventListener("click", function(){
+	reiniciar();
 
 	pincel.clearRect(0,0, 1200, 800);
 
@@ -54,7 +64,16 @@ window.addEventListener("keypress", function(tecla){
 	if(gano || perdio)
 		return;
 
+
 	var letra = tecla.key.toUpperCase();
+	var letraYaUsada = false;
+	
+	for(var i = 0; i < letrasMal.length; i++){
+		if(letra == letrasMal[i]){
+			return;
+		}
+	}
+
 	var letraCoincide = false;
 	for(var i = 0; i < largoPalabra; i++){
 		if(letra == palabra[i]){
@@ -63,14 +82,18 @@ window.addEventListener("keypress", function(tecla){
 		}
 	}
 
-	if(!letraCoincide)
+	if(!letraCoincide){
+		letrasMal.push(letra);
+		letrasMal2 = letrasMal2 + letra + "-";
+		console.log(letrasMal2);
 		nErrores++;
+	}
 
 	
 	pincel.clearRect(0,0, 1200, 800);
 	dibujarTablero(palabraConGuiones);
 	dibujarCuerpo(nErrores);
-	
+	dibujarLetras(letrasMal2);
 	
 
 	if(nErrores > 5){
