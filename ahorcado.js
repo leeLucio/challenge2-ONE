@@ -64,8 +64,10 @@ window.addEventListener("keypress", function(tecla){
 	if(gano || perdio)
 		return;
 
-
 	var letra = tecla.key.toUpperCase();
+	if(letra >= '0' && letra <= '9'){
+		return;
+	}
 	var letraYaUsada = false;
 	
 	for(var i = 0; i < letrasMal.length; i++){
