@@ -2,7 +2,7 @@ var canvas = document.querySelector("#ahorcado");
 var pincel = canvas.getContext("2d");
 
 //Recibe una palabra y dibuja las lineas para la palabra
-function dibujarPalabra(palabra){
+function dibujarPalabraConGuiones(palabra){
 	pincel.font = "60px Arial";
 	pincel.fillStyle = "black"
 	pincel.fillText(palabra, 300, 700);
@@ -26,7 +26,7 @@ function dibujarTablero(palabra){
 	pincel.lineTo(400, 150);
 	pincel.stroke();
 
-	dibujarPalabra(palabra);
+	dibujarPalabraConGuiones(palabra);
 	
 }
 
@@ -69,18 +69,24 @@ function dibujarCuerpo(errores){
 function dibujarMensajePerdio(){
 	pincel.font = "50px Arial";
 	pincel.fillStyle = "red";
-	pincel.fillText("Perdiste", 500, 500);
+	pincel.fillText("Perdiste", 500, 400);
 }
 
 function dibujarMensajeGano(){
 	pincel.font = "50px Arial";
 	pincel.fillStyle = "red";
-	pincel.fillText("Felicidades", 500, 500);
-	pincel.fillText("Ganaste", 500, 550);
+	pincel.fillText("Felicidades", 500, 400);
+	pincel.fillText("Ganaste", 500, 400);
 }
 
 function dibujarLetras(letras){
 	pincel.font = "50px Arial";
 	pincel.fillStyle = "black";
 	pincel.fillText(letras, 500, 300);
+}
+
+function dibujarPalabra(palabra){
+	pincel.font = "50px Arial";
+	pincel.fillStyle = "red";
+	pincel.fillText("La palabra era: " + palabra, 500, 450);
 }

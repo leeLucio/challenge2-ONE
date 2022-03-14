@@ -99,6 +99,7 @@ window.addEventListener("keypress", function(tecla){
 	if(nErrores > 5){
 		perdio = true;
 		dibujarMensajePerdio();
+		dibujarPalabra(palabra);
 	}
 
 	else if(palabraConGuiones.indexOf('_') < 0){
